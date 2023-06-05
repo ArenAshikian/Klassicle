@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}
+
+{% if current_user.is_authenticated %}
+<h1>Add Post</h1>
+<br/>
+<div class = "shadow-lg p-3 mb-5 bg-light rounded">
+    <form method = "POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+        <br/>
+
+        {{ form.content.label(class="form-label") }}
+        {{ form.content(class="form-control", rows="5") }}
+        <br/>
+
+        {{form.submit(class="btn btn-dark")}}
+
+    </form>
+</div>
+{% else %}
+
+<h2>Must Be Logged In...</h2>
+<p>Sorry, You must be logged in to access this page!</p>
+<a href="{{ url_for('login') }}">Login Here</a>
+
+{% endif %}
+
+{% endblock %}

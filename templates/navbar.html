@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light" style = "background-color: #f5a19d;">
+  <a class="navbar-brand" href="{{ url_for('index') }}">Klassicle</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      
+      <!--
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('user', name='Dilhan') }}">User Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('name') }}">Name</a>
+      </li>
+    -->
+      {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('add_user') }}">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('add_post') }}">Add Post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('posts') }}">Posts</a>
+      </li>
+    </ul>
+  </div>
+</nav>
